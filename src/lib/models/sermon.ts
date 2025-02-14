@@ -1,6 +1,19 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
-const SermonSchema = new mongoose.Schema(
+interface ISermon extends Document {
+  title: string;
+  preacher: string;
+  date: Date;
+  duration: string;
+  audioUrl: string;
+  thumbnailUrl: string;
+  category: string;
+  series: string;
+  description: string;
+  tags: string[];
+}
+
+const SermonSchema = new Schema<ISermon>(
   {
     title: { type: String, required: true },
     preacher: { type: String, required: true },
@@ -18,5 +31,5 @@ const SermonSchema = new mongoose.Schema(
   }
 );
 
-export const Sermon =
-  mongoose.models.Sermon || mongoose.model("Sermon", SermonSchema);
+export default mongoose.models.Sermon ||
+  mongoose.model<ISermon>("Sermon", SermonSchema);
