@@ -78,6 +78,11 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
                   alt={sermon.title}
                   fill
                   className="object-cover"
+                  unoptimized
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/fallback-image.jpg";
+                  }}
                 />
               ) : (
                 <div className="w-full h-full bg-blue-600/20 flex items-center justify-center">
