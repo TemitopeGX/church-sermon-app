@@ -1,5 +1,6 @@
-export interface Sermon {
-  _id?: string;
+import { Document } from "mongoose";
+
+export interface Sermon extends Document {
   title: string;
   description: string;
   preacher: string;
@@ -9,6 +10,8 @@ export interface Sermon {
   thumbnailUrl?: string;
   duration: string;
   views: number;
+  totalPlayTime: number;
+  completions: number;
   createdAt: Date;
   updatedAt: Date;
 }
