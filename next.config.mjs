@@ -12,7 +12,13 @@ const nextConfig = {
     ],
   },
   experimental: {
-    appDir: true,
+    serverActions: true,
+  },
+  api: {
+    bodyParser: {
+      sizeLimit: "10mb",
+    },
+    responseLimit: "10mb",
   },
 };
 

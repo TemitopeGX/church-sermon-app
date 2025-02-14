@@ -14,6 +14,16 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // Allow large file uploads for the sermons API endpoint
+  if (path.startsWith("/api/sermons")) {
+    return NextResponse.next({
+      headers: {
+        Accept: "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+      },
+    });
+  }
+
   return NextResponse.next();
 }
 

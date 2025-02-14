@@ -3,18 +3,10 @@ import { connectToDatabase } from "@/lib/mongodb";
 import Sermon from "@/models/sermon";
 import { uploadToCloudinary } from "@/lib/cloudinary";
 
-// Use these new route segment configs instead
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-
-// Add this for handling large files
-export const maxDuration = 60; // 60 seconds timeout
-export const preferredRegion = "iad1"; // US East (N. Virginia)
-
 export async function GET() {
   try {
     await connectToDatabase();
-    const sermons = await Sermon.find().sort({ createdAt: -1 }); // Sort by newest first
+    const sermons = await Sermon.find().sort({ createdAt: -1 });
     return NextResponse.json(sermons);
   } catch (error: any) {
     console.error("Error fetching sermons:", error);
