@@ -3,9 +3,13 @@ import { connectToDatabase } from "@/lib/mongodb";
 import Sermon from "@/models/sermon";
 import { uploadToCloudinary } from "@/lib/cloudinary";
 
-// New way to configure the API route
+// Use these new route segment configs instead
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+// Add this for handling large files
+export const maxDuration = 60; // 60 seconds timeout
+export const preferredRegion = "iad1"; // US East (N. Virginia)
 
 export async function GET() {
   try {
@@ -70,10 +74,3 @@ export async function POST(request: Request) {
     );
   }
 }
-
-// Configure body size limit for file uploads
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
