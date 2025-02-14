@@ -14,6 +14,7 @@ import Cookies from "js-cookie";
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  isAdmin: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
@@ -22,6 +23,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
+  isAdmin: false,
   signIn: async () => {},
   signUp: async () => {},
   signOut: async () => {},
@@ -30,16 +32,23 @@ const AuthContext = createContext<AuthContextType>({
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
-      setLoading(false);
+
       if (user) {
+        // Check if user's email is in admin list
+        const adminEmails = ["covenantchapelmedia@gmail.com"]; // Add your admin email(s)
+        setIsAdmin(adminEmails.includes(user.email || ""));
         Cookies.set("user-logged-in", "true", { expires: 7 });
       } else {
+        setIsAdmin(false);
         Cookies.remove("user-logged-in");
       }
+
+      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -70,7 +79,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut }}>
+    <AuthContext.Provider
+      value={{ user, loading, isAdmin, signIn, signUp, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );
