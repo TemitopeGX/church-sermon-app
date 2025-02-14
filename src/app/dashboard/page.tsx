@@ -5,11 +5,16 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Sermon } from "@/types/sermon";
+import { useRouter } from "next/navigation";
+import MobilePlayer from "@/components/MobilePlayer";
 
 export default function DashboardPage() {
   const [sermons, setSermons] = useState<Sermon[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const router = useRouter();
+  const [selectedSermon, setSelectedSermon] = useState<Sermon | null>(null);
+  const [isPlayerOpen, setIsPlayerOpen] = useState(false);
 
   useEffect(() => {
     fetchSermons();
@@ -28,6 +33,17 @@ export default function DashboardPage() {
       setError(error.message);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleSermonClick = (sermon: Sermon) => {
+    if (window.innerWidth >= 1024) {
+      // Desktop - Navigate to player page
+      router.push(`/player/${sermon._id}`);
+    } else {
+      // Mobile - Open player sheet
+      setSelectedSermon(sermon);
+      setIsPlayerOpen(true);
     }
   };
 
@@ -127,6 +143,17 @@ export default function DashboardPage() {
           </p>
         </div>
       </motion.div>
+
+      {selectedSermon && (
+        <MobilePlayer
+          sermon={selectedSermon}
+          isOpen={isPlayerOpen}
+          onClose={() => setIsPlayerOpen(false)}
+          onProgress={async (progress) => {
+            // Track progress here
+          }}
+        />
+      )}
     </div>
   );
 }
