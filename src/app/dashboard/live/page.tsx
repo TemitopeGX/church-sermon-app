@@ -3,56 +3,56 @@
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import Link from "next/link";
 
 export default function LivePage() {
+  // Update the Facebook URL to the correct one
+  const facebookUrl =
+    "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Ffb.watch%2FxNg1k-v9Yr%2F&show_text=false";
+
   return (
-    <div className="text-white">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-8"
-      >
-        <h1 className="text-2xl font-bold">Live Streams</h1>
-        <p className="text-gray-400 mt-2">Watch our live services</p>
-      </motion.div>
-
-      <div className="grid gap-6 md:grid-cols-2 max-w-4xl">
-        {/* Facebook Live */}
+    <div className="min-h-screen bg-gradient-to-b from-neutral-900 via-[#121212] to-black p-4 lg:p-8">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+          className="mb-8"
         >
-          <Link
-            href="/dashboard/live/facebook"
-            className="block p-6 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl hover:from-blue-500 hover:to-blue-600 transition-all transform hover:scale-[1.02]"
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <FontAwesomeIcon icon={faFacebook} className="w-8 h-8" />
-              <h2 className="text-xl font-semibold">Facebook Live</h2>
-            </div>
-            <p className="text-blue-100">Watch our services live on Facebook</p>
-          </Link>
+          <h1 className="text-2xl lg:text-3xl font-bold text-white">
+            Live Service
+          </h1>
+          <p className="text-gray-400 mt-2">Watch our live service</p>
         </motion.div>
 
-        {/* YouTube Live */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <Link
-            href="/dashboard/live/youtube"
-            className="block p-6 bg-gradient-to-br from-red-600 to-red-700 rounded-2xl hover:from-red-500 hover:to-red-600 transition-all transform hover:scale-[1.02]"
+        <div className="aspect-video w-full bg-black rounded-2xl overflow-hidden shadow-2xl">
+          <iframe
+            src={facebookUrl}
+            className="w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+
+        <div className="mt-8 flex gap-4">
+          <a
+            href="https://www.facebook.com/covenantchapelgh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
           >
-            <div className="flex items-center gap-4 mb-4">
-              <FontAwesomeIcon icon={faYoutube} className="w-8 h-8" />
-              <h2 className="text-xl font-semibold">YouTube Live</h2>
-            </div>
-            <p className="text-red-100">Watch our services live on YouTube</p>
-          </Link>
-        </motion.div>
+            <FontAwesomeIcon icon={faFacebook} className="w-5 h-5" />
+            Watch on Facebook
+          </a>
+
+          <a
+            href="https://www.youtube.com/@covenantchapelgh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+          >
+            <FontAwesomeIcon icon={faYoutube} className="w-5 h-5" />
+            Watch on YouTube
+          </a>
+        </div>
       </div>
     </div>
   );

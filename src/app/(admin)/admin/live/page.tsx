@@ -7,11 +7,9 @@ import { faYoutube, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 
 export default function LiveSettingsPage() {
-  const [youtubeId, setYoutubeId] = useState(
-    process.env.NEXT_PUBLIC_YOUTUBE_LIVE_ID || ""
-  );
+  const [youtubeId, setYoutubeId] = useState("");
   const [facebookUrl, setFacebookUrl] = useState(
-    process.env.NEXT_PUBLIC_FACEBOOK_LIVE_URL || ""
+    "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcovenantchapelgh%2Fvideos%2F1234567890"
   );
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
