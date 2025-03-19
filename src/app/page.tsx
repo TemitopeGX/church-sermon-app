@@ -130,12 +130,16 @@ export default function HomePage() {
 
       {/* Quick Links Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <h2 className="text-3xl font-bold text-center mb-12">
+          WELCOME TO CHURCH!
+        </h2>
+        <br />
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Sunday Service Card */}
             <div className="group relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
-                src="/images/sunday-service.jpg"
+                src="/images/worship.jpg"
                 alt="Sunday Service"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -158,7 +162,7 @@ export default function HomePage() {
             {/* Connect Card */}
             <div className="group relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
-                src="/images/connect.jpg"
+                src="/images/social.jpg"
                 alt="Connect With Us"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -167,13 +171,14 @@ export default function HomePage() {
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-2xl font-bold mb-2">Connect With Us</h3>
                 <p className="text-white/90 mb-4">
-                  Connect with believers and grow together
+                  Visit our Social Media Platform
                 </p>
                 <Link
                   href="/connect"
                   className="inline-flex items-center text-sm font-semibold text-white hover:text-primary-300 transition-colors"
                 >
-                  Join a Group <ArrowRightIcon className="ml-2 h-4 w-4" />
+                  Visit our social media{" "}
+                  <ArrowRightIcon className="ml-2 h-4 w-4" />
                 </Link>
               </div>
             </div>
@@ -300,10 +305,10 @@ export default function HomePage() {
       </section>
 
       {/* Pastor Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
+            <div className="relative aspect-[3/4] overflow-hidden">
               <Image
                 src="/images/pastor.jpg"
                 alt="Lead Pastor"
@@ -312,8 +317,10 @@ export default function HomePage() {
               />
             </div>
             <div>
-              <h2 className="text-3xl font-bold mb-6">MEET THE SET MAN</h2>
-              <p className="text-lg text-gray-600 mb-8">
+              <h2 className="text-3xl font-bold mb-6 text-white">
+                MEET THE SET MAN
+              </h2>
+              <p className="text-lg text-gray-300 mb-8">
                 Meet Pastor Emmanuel Fajinmi, Our Lead Pastor has a heart for
                 seeing lives transformed through the power of God's Word. With
                 over two decades of ministry experience, he leads our church
@@ -322,7 +329,7 @@ export default function HomePage() {
               </p>
               <Link
                 href="/about"
-                className="inline-flex items-center px-8 py-4 text-white bg-primary-800 rounded-full hover:bg-primary-700 transition-all duration-300"
+                className="inline-flex items-center px-8 py-4 text-black bg-white rounded-full hover:bg-gray-100 transition-all duration-300"
               >
                 Read More <ArrowRightIcon className="ml-2 h-5 w-5" />
               </Link>
