@@ -25,11 +25,10 @@ const navigation = [
     name: "MINISTRIES",
     href: "/ministries",
     submenu: [
-      { name: "Kids Ministry", href: "/ministries/kids" },
-      { name: "Youth Ministry", href: "/ministries/youth" },
-      { name: "Young Adults", href: "/ministries/young-adults" },
+      { name: "Icon of Glory Ministry", href: "/ministries/kids" },
+      { name: "Arrow - Head Ministry", href: "/ministries/youth" },
+
       { name: "Women's Ministry", href: "/ministries/women" },
-      { name: "Men's Ministry", href: "/ministries/men" },
     ],
   },
   {
