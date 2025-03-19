@@ -81,6 +81,8 @@ export default function SermonPage({ params }: { params: { id: string } }) {
             <SermonPlayer
               audioUrl={sermon.audioUrl}
               title={sermon.title}
+              preacher={sermon.preacher}
+              description={sermon.description}
               onProgress={handleProgress}
             />
 
