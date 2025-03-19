@@ -130,7 +130,7 @@ export default function HomePage() {
 
       {/* Quick Links Section */}
       <section className="py-10 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 font-aurora">
           WELCOME TO CHURCH!
         </h2>
         <br />
@@ -212,7 +212,7 @@ export default function HomePage() {
       {/* Movement Section */}
       <section className="py-16 sm:py-24 bg-primary-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 font-aurora">
             A MOVEMENT THAT CANNOT BE STOPPED!
           </h2>
           <p className="text-lg sm:text-xl text-white/90 mb-6 sm:mb-8">
@@ -231,7 +231,7 @@ export default function HomePage() {
       {/* Worship With Us Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12 font-aurora">
             WORSHIP WITH US
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -289,7 +289,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/60" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6 font-aurora">
             WE BOAST IN CHRIST JESUS
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto italic">
@@ -318,7 +318,7 @@ export default function HomePage() {
               />
             </div>
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-white">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-white font-aurora">
                 MEET THE SET MAN
               </h2>
               <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8">
@@ -340,42 +340,96 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Monthly Banner Section */}
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative aspect-[21/9] w-full overflow-hidden rounded-2xl shadow-xl">
+            <Image
+              src="/images/monthly-flyer.jpg"
+              alt="Monthly Church Program"
+              fill
+              className="object-cover"
+            />
+            {/* Optional overlay for text visibility */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-6 sm:p-8 text-white">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-2 font-aurora">
+                March 2025
+              </h2>
+              <p className="text-lg sm:text-xl text-white/90 max-w-xl">
+                Our Season Of Infallible Proofs
+              </p>
+            </div>
+            {/* Optional CTA button */}
+            <div className="absolute bottom-6 sm:bottom-8 right-6 sm:right-8">
+              <Link
+                href="/events"
+                className="inline-flex items-center px-6 py-3 text-sm font-semibold bg-white text-primary-800 rounded-full hover:bg-white/90 transition-all duration-300 shadow-lg"
+              >
+                View All Events <ArrowRightIcon className="ml-2 h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Give Section */}
-      <section className="py-24 bg-primary-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Give to The Covenant Chapel
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Your generosity helps us reach more people with the love of Christ
-          </p>
-          <Link
-            href="/give"
-            className="inline-flex items-center px-8 py-4 text-primary-800 bg-white rounded-full hover:bg-white/90 transition-all duration-300"
-          >
-            Give Now <ArrowRightIcon className="ml-2 h-5 w-5" />
-          </Link>
+      <section className="py-16 bg-[#ffefef] text-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#ffefef] rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+            <div className="relative z-10">
+              <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-black font-aurora">
+                ONLINE SEEDING
+              </h2>
+              <p className="text-lg text-gray-700 mb-8">
+                Your generosity keeps blessing lives, thank you for giving.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/give"
+                  className="inline-flex items-center px-8 py-3 text-black bg-[#e94f4f] rounded-full hover:bg-[#d64545] transition-all duration-300"
+                >
+                  BUILDING PROJECT
+                </Link>
+              </div>
+            </div>
+            {/* Decorative hand illustration on the right */}
+            <div className="absolute right-0 bottom-0 w-1/3 h-full opacity-20">
+              <Image
+                src="/images/giving-hand.png"
+                alt="Decorative hand illustration"
+                fill
+                className="object-contain object-right-bottom"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-12 sm:py-16 bg-gray-100">
+      <section className="py-16 bg-[#5b2324] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 font-aurora">
             JOIN OUR MAILING LIST
           </h2>
-          <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-full border-2 border-gray-300 focus:border-primary-800 focus:ring-0"
-            />
-            <button
-              type="submit"
-              className="px-6 sm:px-8 py-3 bg-primary-800 text-white rounded-full hover:bg-primary-700 transition-all duration-300"
-            >
-              Subscribe
-            </button>
+          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            We promise not to spam you, but send you edifying and amazing
+            content regularly from Celebration Church International.
+          </p>
+          <form className="max-w-xl mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="email"
+                placeholder="Email address"
+                className="flex-1 px-6 py-3 rounded-full border-0 focus:ring-2 focus:ring-white bg-white/20 text-white placeholder-white/70"
+              />
+              <button
+                type="submit"
+                className="px-8 py-3 bg-white text-[#5b2324] font-semibold rounded-full hover:bg-gray-100 transition-all duration-300"
+              >
+                SUBMIT
+              </button>
+            </div>
           </form>
         </div>
       </section>

@@ -67,6 +67,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         serif: ["var(--font-crimson)", "Georgia", "serif"],
+        aurora: ["OPTIAurora", "serif"],
       },
       spacing: {
         "18": "4.5rem",
