@@ -5,25 +5,25 @@ const aboutSections = [
   {
     title: "Our Story",
     description: "Journey through our history of faith and community building",
-    image: "/images/church-history.jpg",
+    image: "/images/story.png",
     link: "/about/story",
   },
   {
     title: "Vision & Mission",
     description: "Discover our purpose and plans for the future",
-    image: "/images/church-vision.jpg",
+    image: "/images/vision.png",
     link: "/about/vision",
   },
   {
     title: "Leadership",
     description: "Meet the dedicated team guiding our church",
-    image: "/images/church-leadership.jpg",
+    image: "/images/leadership.png",
     link: "/about/leadership",
   },
   {
     title: "What We Believe",
     description: "Explore our foundational beliefs and values",
-    image: "/images/church-beliefs.jpg",
+    image: "/images/beleve.png",
     link: "/about/beliefs",
   },
 ];
@@ -97,7 +97,7 @@ export default function AboutPage() {
             </div>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
               <Image
-                src="/images/church-welcome.jpg"
+                src="/images/church-logo.png"
                 alt="Welcome to Our Church"
                 fill
                 className="object-cover"

@@ -72,7 +72,7 @@ const recentContent = [
 
 // Remove individual team members data since we're using a single image
 const teamImage = {
-  src: "/images/team/media-team.jpg",
+  src: "/images/media-team.jpg",
   alt: "Our Media Team",
 };
 
