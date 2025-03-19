@@ -99,7 +99,7 @@ export default function HomePage() {
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section with Overlay */}
-      <section className="relative h-screen">
+      <section className="relative h-[80vh] sm:h-screen">
         <div className="absolute inset-0">
           <Image
             src="/images/hero-worship.jpg"
@@ -111,31 +111,31 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/50" />
         </div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white max-w-5xl mx-auto leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-7xl font-bold text-white max-w-5xl mx-auto leading-tight">
             WE ENVISION ALL MEN CELEBRATING ENDLESS LIFE IN CHRIST
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-white/90 max-w-2xl mx-auto">
+          <p className="mt-4 sm:mt-6 text-base sm:text-xl text-white/90 max-w-2xl mx-auto">
             Join us in worship as we celebrate the transforming power of God's
             love
           </p>
           <Link
             href="/about"
-            className="mt-8 inline-flex items-center px-8 py-4 text-lg font-semibold text-primary-800 bg-white rounded-full hover:bg-white/90 transition-all duration-300 transform hover:scale-105"
+            className="mt-6 sm:mt-8 inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-primary-800 bg-white rounded-full hover:bg-white/90 transition-all duration-300 transform hover:scale-105"
           >
             Learn More
-            <ArrowRightIcon className="ml-2 h-5 w-5" />
+            <ArrowRightIcon className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
           </Link>
         </div>
       </section>
 
       {/* Quick Links Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <h2 className="text-3xl font-bold text-center mb-12">
+      <section className="py-10 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">
           WELCOME TO CHURCH!
         </h2>
         <br />
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {/* Sunday Service Card */}
             <div className="group relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
@@ -210,19 +210,20 @@ export default function HomePage() {
       </section>
 
       {/* Movement Section */}
-      <section className="py-24 bg-primary-800 text-white">
+      <section className="py-16 sm:py-24 bg-primary-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
             A MOVEMENT THAT CANNOT BE STOPPED!
           </h2>
-          <p className="text-xl text-white/90 mb-8">
+          <p className="text-lg sm:text-xl text-white/90 mb-6 sm:mb-8">
             A BILLION SOULS IN 10,000 CITIES
           </p>
           <Link
             href="/about"
-            className="inline-flex items-center px-8 py-4 text-primary-800 bg-white rounded-full hover:bg-white/90 transition-all duration-300"
+            className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-primary-800 bg-white rounded-full hover:bg-white/90 transition-all duration-300"
           >
-            Find out more <ArrowRightIcon className="ml-2 h-5 w-5" />
+            Find out more{" "}
+            <ArrowRightIcon className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
           </Link>
         </div>
       </section>
@@ -305,10 +306,10 @@ export default function HomePage() {
       </section>
 
       {/* Pastor Section */}
-      <section className="py-24 bg-black">
+      <section className="py-16 sm:py-24 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-[3/4] overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div className="relative aspect-[4/5] sm:aspect-[3/4] overflow-hidden">
               <Image
                 src="/images/pastor.jpg"
                 alt="Lead Pastor"
@@ -317,10 +318,10 @@ export default function HomePage() {
               />
             </div>
             <div>
-              <h2 className="text-3xl font-bold mb-6 text-white">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-white">
                 MEET THE SET MAN
               </h2>
-              <p className="text-lg text-gray-300 mb-8">
+              <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8">
                 Meet Pastor Emmanuel Fajinmi, Our Lead Pastor has a heart for
                 seeing lives transformed through the power of God's Word. With
                 over two decades of ministry experience, he leads our church
@@ -329,9 +330,10 @@ export default function HomePage() {
               </p>
               <Link
                 href="/about"
-                className="inline-flex items-center px-8 py-4 text-black bg-white rounded-full hover:bg-gray-100 transition-all duration-300"
+                className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-black bg-white rounded-full hover:bg-gray-100 transition-all duration-300"
               >
-                Read More <ArrowRightIcon className="ml-2 h-5 w-5" />
+                Read More{" "}
+                <ArrowRightIcon className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
             </div>
           </div>
@@ -357,10 +359,12 @@ export default function HomePage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-12 sm:py-16 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold mb-8">JOIN OUR MAILING LIST</h2>
-          <form className="max-w-md mx-auto flex gap-4">
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">
+            JOIN OUR MAILING LIST
+          </h2>
+          <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
             <input
               type="email"
               placeholder="Enter your email"
@@ -368,7 +372,7 @@ export default function HomePage() {
             />
             <button
               type="submit"
-              className="px-8 py-3 bg-primary-800 text-white rounded-full hover:bg-primary-700 transition-all duration-300"
+              className="px-6 sm:px-8 py-3 bg-primary-800 text-white rounded-full hover:bg-primary-700 transition-all duration-300"
             >
               Subscribe
             </button>
