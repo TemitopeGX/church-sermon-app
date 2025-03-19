@@ -1,3 +1,5 @@
+"use client";
+
 import type { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +10,14 @@ import {
   HeartIcon,
   ArrowRightIcon,
 } from "@heroicons/react/24/outline";
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
 const upcomingEvents = [
   {
@@ -95,7 +105,46 @@ const locations: Location[] = [
   },
 ];
 
+const quickLinks = [
+  {
+    title: "Sunday Service",
+    description: "Join us for powerful worship and the Word",
+    image: "/images/worship.jpg",
+    link: "/events",
+    linkText: "View Schedule",
+  },
+  {
+    title: "Connect With Us",
+    description: "Visit our Social Media Platform",
+    image: "/images/social.jpg",
+    link: "/connect",
+    linkText: "Visit our social media",
+  },
+  {
+    title: "Celebrations",
+    description: "Experience the joy of fellowship",
+    image: "/images/celebrations.jpg",
+    link: "/events",
+    linkText: "View Gallery",
+  },
+];
+
 export default function HomePage() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
+
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section with Overlay */}
@@ -133,79 +182,78 @@ export default function HomePage() {
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 font-aurora">
           WELCOME TO CHURCH!
         </h2>
-        <br />
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-            {/* Sunday Service Card */}
-            <div className="group relative overflow-hidden rounded-2xl aspect-[4/3]">
-              <Image
-                src="/images/worship.jpg"
-                alt="Sunday Service"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="text-2xl font-bold mb-2">Sunday Service</h3>
-                <p className="text-white/90 mb-4">
-                  Join us for powerful worship and the Word
-                </p>
-                <Link
-                  href="/events"
-                  className="inline-flex items-center text-sm font-semibold text-white hover:text-primary-300 transition-colors"
+          {isMobile ? (
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              spaceBetween={16}
+              slidesPerView={1}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              pagination={{ clickable: true }}
+              className="w-full"
+            >
+              {quickLinks.map((card, index) => (
+                <SwiperSlide key={index}>
+                  <div className="group relative overflow-hidden rounded-2xl aspect-[4/3]">
+                    <Image
+                      src={card.image}
+                      alt={card.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+                      <h3 className="text-lg sm:text-2xl font-bold mb-1 sm:mb-2">
+                        {card.title}
+                      </h3>
+                      <p className="text-sm sm:text-base text-white/90 mb-2 sm:mb-4">
+                        {card.description}
+                      </p>
+                      <Link
+                        href={card.link}
+                        className="inline-flex items-center text-xs sm:text-sm font-semibold text-white hover:text-primary-300 transition-colors"
+                      >
+                        {card.linkText}{" "}
+                        <ArrowRightIcon className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+                      </Link>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+              {quickLinks.map((card, index) => (
+                <div
+                  key={index}
+                  className="group relative overflow-hidden rounded-2xl aspect-[4/3]"
                 >
-                  View Schedule <ArrowRightIcon className="ml-2 h-4 w-4" />
-                </Link>
-              </div>
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+                    <h3 className="text-lg sm:text-2xl font-bold mb-1 sm:mb-2">
+                      {card.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-white/90 mb-2 sm:mb-4">
+                      {card.description}
+                    </p>
+                    <Link
+                      href={card.link}
+                      className="inline-flex items-center text-xs sm:text-sm font-semibold text-white hover:text-primary-300 transition-colors"
+                    >
+                      {card.linkText}{" "}
+                      <ArrowRightIcon className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
-
-            {/* Connect Card */}
-            <div className="group relative overflow-hidden rounded-2xl aspect-[4/3]">
-              <Image
-                src="/images/social.jpg"
-                alt="Connect With Us"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="text-2xl font-bold mb-2">Connect With Us</h3>
-                <p className="text-white/90 mb-4">
-                  Visit our Social Media Platform
-                </p>
-                <Link
-                  href="/connect"
-                  className="inline-flex items-center text-sm font-semibold text-white hover:text-primary-300 transition-colors"
-                >
-                  Visit our social media{" "}
-                  <ArrowRightIcon className="ml-2 h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Celebrations Card */}
-            <div className="group relative overflow-hidden rounded-2xl aspect-[4/3]">
-              <Image
-                src="/images/celebrations.jpg"
-                alt="Celebrations"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="text-2xl font-bold mb-2">Celebrations</h3>
-                <p className="text-white/90 mb-4">
-                  Experience the joy of fellowship
-                </p>
-                <Link
-                  href="/events"
-                  className="inline-flex items-center text-sm font-semibold text-white hover:text-primary-300 transition-colors"
-                >
-                  View Gallery <ArrowRightIcon className="ml-2 h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -389,7 +437,7 @@ export default function HomePage() {
                   href="/give"
                   className="inline-flex items-center px-8 py-3 text-black bg-[#e94f4f] rounded-full hover:bg-[#d64545] transition-all duration-300"
                 >
-                  BUILDING PROJECT
+                  ONLINE SEEDING
                 </Link>
               </div>
             </div>

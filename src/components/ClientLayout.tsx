@@ -143,7 +143,7 @@ export default function ClientLayout({
             {/* Logo Section */}
             <div className="col-span-1">
               <img
-                src="/logo.png"
+                src="/footer-logo.png"
                 alt="The Covenant Chapel"
                 className="h-12 w-auto mb-6"
               />
