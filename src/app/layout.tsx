@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ClientLayout from "@/components/ClientLayout";
+import RootLayoutClient from "@/components/RootLayoutClient";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full scroll-smooth">
       <body className={`${inter.className} h-full`}>
-        <ClientLayout>{children}</ClientLayout>
+        <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>
   );
