@@ -20,7 +20,7 @@ interface Sermon {
   videoUrl: string;
   thumbnailUrl: string;
   duration: number;
-  views: number;
+  views?: number;
   createdAt: string;
   category: string;
   preacher: string;
@@ -74,7 +74,7 @@ export default function SermonsPage() {
         return (
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
         );
-      if (sortBy === "most-viewed") return b.views - a.views;
+      if (sortBy === "most-viewed") return (b.views || 0) - (a.views || 0);
       return 0;
     });
 
@@ -148,15 +148,20 @@ export default function SermonsPage() {
           ? Array(6)
               .fill(0)
               .map((_, index) => (
-                <div key={index} className="animate-pulse">
+                <motion.div
+                  key={`skeleton-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="animate-pulse"
+                >
                   <div className="aspect-video bg-white/5 rounded-xl mb-4"></div>
                   <div className="h-4 bg-white/5 rounded w-3/4 mb-2"></div>
                   <div className="h-4 bg-white/5 rounded w-1/2"></div>
-                </div>
+                </motion.div>
               ))
           : filteredSermons.map((sermon) => (
               <motion.div
-                key={sermon._id}
+                key={`sermon-${sermon._id}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="group relative bg-white/5 rounded-xl overflow-hidden"
@@ -198,7 +203,7 @@ export default function SermonsPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <RiEyeLine className="w-4 h-4" />
-                      {sermon.views.toLocaleString()}
+                      {(sermon.views || 0).toLocaleString()}
                     </div>
                   </div>
                 </div>

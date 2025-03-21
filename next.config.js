@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["your-image-domain.com"], // If using external images
+    domains: ["res.cloudinary.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/dg9elcrcw/**",
+      },
+    ],
   },
   webpack: (config) => {
     config.resolve.fallback = {
