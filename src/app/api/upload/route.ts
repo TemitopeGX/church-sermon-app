@@ -10,6 +10,11 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+export const maxDuration = 120;
+
+// This tells Next.js to handle large file uploads
 export async function POST(request: Request) {
   try {
     // Verify Cloudinary configuration
@@ -143,11 +148,3 @@ export async function POST(request: Request) {
     );
   }
 }
-
-// Configure the API route
-export const config = {
-  api: {
-    bodyParser: false,
-    responseLimit: "100mb",
-  },
-};
