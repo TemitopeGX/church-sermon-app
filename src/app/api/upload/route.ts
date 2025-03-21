@@ -12,7 +12,7 @@ cloudinary.config({
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 120;
+export const maxDuration = 60; // Maximum allowed duration for Vercel hobby plan
 
 // This tells Next.js to handle large file uploads
 export async function POST(request: Request) {
@@ -93,7 +93,7 @@ export async function POST(request: Request) {
       .upload(audioBase64, {
         resource_type: "auto",
         folder: "sermons/audio",
-        timeout: 120000, // 2 minutes timeout for large files
+        timeout: 55000, // 55 seconds timeout to ensure we stay within Vercel's 60-second limit
       })
       .catch((error) => {
         console.error("Audio upload error:", error);
