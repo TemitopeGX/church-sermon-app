@@ -24,9 +24,12 @@ export async function POST(request: Request) {
       !process.env.CLOUDINARY_API_SECRET
     ) {
       console.error("Cloudinary configuration missing");
-      return NextResponse.json(
-        { error: "Server configuration error" },
-        { status: 500 }
+      return new NextResponse(
+        JSON.stringify({ error: "Server configuration error" }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json" },
+        }
       );
     }
 
@@ -55,24 +58,33 @@ export async function POST(request: Request) {
         audio: !!audio,
         thumbnail: !!thumbnail,
       });
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
+      return new NextResponse(
+        JSON.stringify({ error: "Missing required fields" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
       );
     }
 
     // Validate file types
     if (!audio.type.startsWith("audio/")) {
-      return NextResponse.json(
-        { error: "Invalid audio file type" },
-        { status: 400 }
+      return new NextResponse(
+        JSON.stringify({ error: "Invalid audio file type" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
       );
     }
 
     if (!thumbnail.type.startsWith("image/")) {
-      return NextResponse.json(
-        { error: "Invalid thumbnail file type" },
-        { status: 400 }
+      return new NextResponse(
+        JSON.stringify({ error: "Invalid thumbnail file type" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
       );
     }
 
@@ -133,18 +145,27 @@ export async function POST(request: Request) {
         throw new Error("Failed to save sermon data");
       });
 
-    return NextResponse.json({
-      id: sermonDoc.id,
-      message: "Sermon uploaded successfully",
-    });
+    return new NextResponse(
+      JSON.stringify({
+        id: sermonDoc.id,
+        message: "Sermon uploaded successfully",
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } catch (error) {
     console.error("Upload error:", error);
-    return NextResponse.json(
-      {
+    return new NextResponse(
+      JSON.stringify({
         error:
           error instanceof Error ? error.message : "Failed to upload sermon",
-      },
-      { status: 500 }
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
     );
   }
 }

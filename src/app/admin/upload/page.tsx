@@ -133,11 +133,19 @@ export default function UploadPage() {
         body: formData,
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.error || "Upload failed");
+        const errorData = await response.text();
+        let errorMessage;
+        try {
+          const errorJson = JSON.parse(errorData);
+          errorMessage = errorJson.error || "Upload failed";
+        } catch (e) {
+          errorMessage = errorData || "Upload failed";
+        }
+        throw new Error(errorMessage);
       }
+
+      const data = await response.json();
 
       // Reset form
       setForm({
@@ -150,12 +158,10 @@ export default function UploadPage() {
         thumbnailFile: null,
       });
       setPreviewUrl("");
-      setIsNewSeries(false);
+      setUploading(false);
+      setUploadProgress(0);
 
-      // Show success message
-      alert("Sermon uploaded successfully!");
-
-      // Refresh the series list if a new series was added
+      // Refresh series list if a new series was added
       if (isNewSeries) {
         const seriesResponse = await fetch("/api/series");
         if (seriesResponse.ok) {
@@ -163,13 +169,12 @@ export default function UploadPage() {
           setExistingSeries(seriesData);
         }
       }
+
+      // Show success message
+      alert("Sermon uploaded successfully!");
     } catch (error) {
       console.error("Upload error:", error);
-      alert(
-        error instanceof Error
-          ? error.message
-          : "Failed to upload sermon. Please try again."
-      );
+      alert(error instanceof Error ? error.message : "Failed to upload sermon");
     } finally {
       setUploading(false);
       setUploadProgress(0);
